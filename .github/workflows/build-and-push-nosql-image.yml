@@ -8,8 +8,6 @@ on:
     paths:
       - 'olympus/1.0/*'
       - '.github/workflows/build-and-push-nosql-image.yml'
-    workflow_dispatch:
-
 env:
   IMAGE_NAME: olympus
   TAG: 1.0
@@ -34,7 +32,7 @@ jobs:
           echo "::set-output name=repo-owner::${REPO_OWNER,,}"
       - name: Build NoSQL 19.5-ce image
         run: |
-          cd NoSQL/19.5-ce
+          cd olympus/1.0
           docker build --tag ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/$IMAGE_NAME:$TAG .
       - name: Push image to GitHub Container Registry
         run: |
